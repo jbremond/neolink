@@ -18,9 +18,7 @@ mod cmdline;
 mod config;
 mod reboot;
 mod motion;
-mod rtsp;
 mod statusled;
-mod talk;
 mod utils;
 
 use cmdline::{Command, Opt};
@@ -54,10 +52,6 @@ fn main() -> Result<()> {
                 "Deprecated command line option. Please use: `neolink rtsp --config={:?}`",
                 config
             );
-            rtsp::main(rtsp::Opt {}, config)?;
-        }
-        Some(Command::Rtsp(opts)) => {
-            rtsp::main(opts, config)?;
         }
         Some(Command::StatusLight(opts)) => {
             statusled::main(opts, config)?;
@@ -67,9 +61,6 @@ fn main() -> Result<()> {
         }
         Some(Command::Motion(opts)) => {
             motion::main(opts, config)?;
-        }
-        Some(Command::Talk(opts)) => {
-            talk::main(opts, config)?;
         }
     }
 
